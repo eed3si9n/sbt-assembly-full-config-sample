@@ -8,6 +8,6 @@ object Builds extends Build {
   override lazy val settings = super.settings ++ Seq(
     version := "0.1-SNAPSHOT",
     organization := "com.example",
-    scalaVersion := "2.9.0-1"
+    scalaVersion := "2.9.1"
   )    
 }
