@@ -2,12 +2,14 @@ import sbt._
 import Keys._
 
 object Builds extends Build {
-  lazy val root = Project("root", file(".")) aggregate(app)
-  lazy val app = Project("app", file("app")) settings(sbtassembly.Plugin.assemblySettings: _*)
+  lazy val root = Project("root", file("."),
+    settings = buildSettings) aggregate(app)
+  lazy val app = Project("app", file("app"),
+    settings = buildSettings ++ sbtassembly.Plugin.assemblySettings)
   
-  override lazy val settings = super.settings ++ Seq(
+  lazy val buildSettings = Defaults.defaultSettings ++ Seq(
     version := "0.1-SNAPSHOT",
     organization := "com.example",
     scalaVersion := "2.9.1"
-  )    
+  )
 }
